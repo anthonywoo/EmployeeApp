@@ -6,13 +6,14 @@ class Employee < ActiveRecord::Base
   has_many :supervised_teams, :class_name => "Employee", :foreign_key => "supervisor_id" #go over this again!
   #need to specify foreign key bc it will assume supervised_teams_id, but there is no such key in Employee table
 
-
   has_many :real_supervised_teams, :class_name => "Team", :through => :team_memberships, :source => :team #go over this again!
   #need to specify source, but itll look for an association named real_suprvised_teams in team_memberships model.
   #The association is named 'team' in team_memberships model
 
   has_one :employee_profile, :inverse_of => :employee
+
   belongs_to :supervisor, :class_name => "Employee"
+  #it'll look for supervisor class, but class name is actually employee
 
   accepts_nested_attributes_for :employee_profile
 
