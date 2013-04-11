@@ -1,0 +1,5 @@
+<ul class="thumbnails">
+<% @employees.each do |emp| %>
+  <%= render :partial => "employee_thumbnail", :locals => {:emp => emp} %>
+<% end %>
+</ul>
