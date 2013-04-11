@@ -1,0 +1,11 @@
+<h1> <%= @team.name %> </h1>
+
+<%= "Members:"%>
+<% @team.members.each do |member| %>
+<br>
+  <%= link_to member.name, employee_url(member) %>
+<% end %>
+
+<br>
+<br>
+<%= link_to "Edit Team", edit_team_url(@team) %>

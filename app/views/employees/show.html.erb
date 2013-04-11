@@ -1,0 +1,45 @@
+<h1> <%= @employee.name %> </h1>
+<div class="row-fluid">
+  <%# if @employee.photo_file_name %>
+    <div class="span2">
+      <%= image_tag @employee.photo.url(:medium) %>
+    </div>
+  <%# end %>
+  <div class="span5">
+    <%= "SSN: #{@employee.employee_profile.ssn}" %>
+    <br>
+    <%= "Address: #{@employee.employee_profile.address}" %>
+    <br>
+    <%= "Supervisor:"%>
+    <% if @employee.supervisor %>
+      <%= link_to "#{@employee.supervisor.name}", employee_url(@employee.supervisor) %>
+    <% end %>
+    <br>
+    <br>
+    <strong><%= "Teams:" %></strong>
+    <br>
+    <% @employee.teams.each do |team| %>
+      <%= link_to team.name, team_url(team) %>
+    <% end %>
+
+    <br>
+    <br>
+    <strong><%= "Direct Underlings:" %></strong>
+    <br>
+    <% @employee.supervised_teams.each do |team| %>
+      <%= link_to team.name, employee_url(team) %>
+      <br>
+    <% end %>
+    <br>
+    <strong><%= "Supervised Teams:" %></strong>
+    <br>
+    <% @employee.real_supervised_teams.each do |team| %>
+      <%= link_to team.name, team_url(team) %>
+      <br>
+    <% end %>
+
+  </div>
+</div>
+<br>
+<br>
+<%= link_to "Edit Employee", edit_employee_url(@employee) %>

@@ -1,0 +1,29 @@
+<%= form_for @employee, :html => {:multipart => true} do |f| %>
+  <%= f.label :name, "Name:" %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.fields_for :employee_profile do |sf| %>
+    <%= sf.label :ssn, "SSN:" %>
+    <%= sf.text_field :ssn %>
+    <br>
+    <%= sf.label :address, "Address:" %>
+    <%= sf.text_field :address %>
+  <% end %>
+  <br>
+  <%= "Supervisor:" %>
+  <%= f.collection_select(:supervisor_id, Employee.all, :id, :name, :prompt => true) %> 
+  <br>
+  <%= "Teams:" %>
+  <% Team.all.each do |team| %>
+  <br>
+    <%= check_box_tag( "employee[team_ids][]", team.id, @employee.team_ids.include?(team.id), :id=> "team_id_#{team.id}")%>
+    <%= label_tag "team_id_#{team.id}", team.name%>
+  <% end %>
+  <br>
+  <%= f.label :photo, "Photo:" %>
+  <%= f.file_field :photo %>
+  <br>
+  <%= hidden_field_tag "employee[team_ids][]", "" %>
+  <br>
+  <%= f.submit %>
+<% end %>

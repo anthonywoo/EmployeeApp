@@ -1,0 +1,14 @@
+<%= form_for @team do |f| %>
+  <%= f.label :name, "Name:" %>
+  <%= f.text_field :name %>
+  <br>
+  <%= "Members:" %>
+  <% Employee.all.each do |employee| %>
+    <br>
+    <%= check_box_tag "team[member_ids][]", employee.id, @team.member_ids.include?(employee.id), :id=>"emp_id#{employee.id}" %>
+    <%= label_tag "emp_id#{employee.id}", employee.name %>
+  <% end %>
+  <%= hidden_field_tag "team[member_ids][]", "" %>
+  <br>
+  <%= f.submit %>
+<% end %>

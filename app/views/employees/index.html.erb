@@ -1,0 +1,17 @@
+<h1> Employees </h1>
+<ul class="thumbnails">
+
+<% @employees.each do |emp| %>
+  <li >
+    <a href="/employees/<%=emp.id%>" class="thumbnail">
+      <% if emp.photo_file_name %>
+        <%=image_tag emp.photo.url(:thumb)%>
+      <% end %>
+      <%=emp.name%>
+    </a>
+    <%#= link_to emp.name, employee_url(emp), :class=>"thumbnail" %>
+  </li>
+<% end %>
+</ul>
+
+<%= link_to "Create New Employee" ,new_employee_url %>
