@@ -1,10 +1,10 @@
 <h1> <%= @employee.name %> </h1>
 <div class="row-fluid">
-  <%# if @employee.photo_file_name %>
-    <div class="span2">
-      <%= image_tag @employee.photo.url(:medium) %>
-    </div>
-  <%# end %>
+
+  <div class="span2">
+    <%= image_tag @employee.photo.url(:medium) %>
+  </div>
+    
   <div class="span5">
     <%= "SSN: #{@employee.employee_profile.ssn}" %>
     <br>
@@ -42,4 +42,4 @@
 </div>
 <br>
 <br>
-<%= link_to "Edit Employee", edit_employee_url(@employee) %>
+<%= link_to "Edit Employee", edit_employee_url(@employee), :class => "btn btn-large btn-primary" %>

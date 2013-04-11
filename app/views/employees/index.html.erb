@@ -1,17 +1,14 @@
 <h1> Employees </h1>
 <ul class="thumbnails">
-
+<%= link_to "Create New Employee" ,new_employee_url , :class => "btn btn-large" %>
+<br>
+<br>
 <% @employees.each do |emp| %>
-  <li >
-    <a href="/employees/<%=emp.id%>" class="thumbnail">
-      <% if emp.photo_file_name %>
-        <%=image_tag emp.photo.url(:thumb)%>
-      <% end %>
-      <%=emp.name%>
-    </a>
-    <%#= link_to emp.name, employee_url(emp), :class=>"thumbnail" %>
-  </li>
+  <%= render :partial => "employee_thumbnail", :locals => {:emp => emp} %>
 <% end %>
 </ul>
 
-<%= link_to "Create New Employee" ,new_employee_url %>
+<%#= link_to "Create New Employee" ,new_employee_url , :class => "btn btn-large btn-primary" %>
+<br>
+
+<%= will_paginate @employees %>

@@ -1,11 +1,11 @@
 <h1> <%= @team.name %> </h1>
 
 <%= "Members:"%>
+<ul class="thumbnails">
 <% @team.members.each do |member| %>
-<br>
-  <%= link_to member.name, employee_url(member) %>
+  <%= render :partial => "/employees/employee_thumbnail", :locals => {:emp => member}%>
 <% end %>
+</ul>
+<br>
 
-<br>
-<br>
-<%= link_to "Edit Team", edit_team_url(@team) %>
+<%= link_to "Edit Team", edit_team_url(@team), :class => "btn btn-large btn-primary" %>

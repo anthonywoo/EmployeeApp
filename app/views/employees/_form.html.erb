@@ -11,15 +11,15 @@
   <% end %>
   <br>
   <%= "Supervisor:" %>
+  <br>
   <%= f.collection_select(:supervisor_id, Employee.all, :id, :name, :prompt => true) %> 
   <br>
   <%= "Teams:" %>
   <% Team.all.each do |team| %>
-  <br>
+    <label class="checkbox"> <%= team.name %>
     <%= check_box_tag( "employee[team_ids][]", team.id, @employee.team_ids.include?(team.id), :id=> "team_id_#{team.id}")%>
-    <%= label_tag "team_id_#{team.id}", team.name%>
+    </label>
   <% end %>
-  <br>
   <%= f.label :photo, "Photo:" %>
   <%= f.file_field :photo %>
   <br>

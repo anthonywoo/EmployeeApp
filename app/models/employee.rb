@@ -13,10 +13,10 @@ class Employee < ActiveRecord::Base
 
   validates :employee_profile, :name, :presence => true
 
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "80x80>" }, 
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "200x200>" }, 
       :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
       :url => "/system/:attachment/:id/:style/:filename",
-      :default_url => "/assets/images/missing.jpeg"
+      :default_url => ActionController::Base.helpers.asset_path('missing.png')
 end
 
 # 1 0
